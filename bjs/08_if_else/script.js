@@ -4,12 +4,15 @@ alert(`Загадайте любое целое число от ${minValue} до
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
+let answerPhrase;
 
 const orderNumberField = document.getElementById('orderNumberField');
 const answerField = document.getElementById('answerField');
 
 orderNumberField.innerText = orderNumber;
-answerField.innerText = `Вы загадали число ${answerNumber }?`;
+answerPhrase = answerPhraseRndm();
+answerField.innerText = `${answerPhrase} ${answerNumber }?`;
+
 
 document.getElementById('btnRetry').addEventListener('click', function () {
     location.reload();
@@ -19,67 +22,113 @@ document.getElementById('btnRetry').addEventListener('click', function () {
 })
 
 document.getElementById('btnOver').addEventListener('click', function () {
-    if (gameRun){
-        if (minValue === maxValue){
-            const phraseNumber = randomNamber(3);
-            // const answerPhrase = (phraseRandom === 1) ?
-            //     `Вы загадали неправильное число!\n\u{1F914}` :
-            //     `Я сдаюсь..\n\u{1F92F}`;
-            const answerPhrase;
-            switch (phraseNumber) {
-                case 1: 
-                    answerPhrase = `Ты загадал неправильное число!\n\u{1F914}`  ;
-                    break;
-                case 2:
-                    answerPhrase = `Что-то пошло не так\n\u{1F92F}`  ;
-                    break;
-                case 3:
-                    answerPhrase = `Где-то ты меня обманул \n\u{1F914}`  ;
-                    break;
-                
-            }
-
+    if (gameRun) {
+        if (minValue === maxValue) {
+            answerPhrase = ifWrongNumber();
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
-            minValue = answerNumber  + 1;
-            answerNumber  = Math.floor((minValue + maxValue) / 2);
+            minValue = answerNumber + 1;
+            answerNumber = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
-            answerField.innerText = `Вы загадали число ${answerNumber }?`;
+            answerPhrase = answerPhraseRndm();
+            answerField.innerText = `${answerPhrase} ${answerNumber }?`;
         }
     }
 })
 
 document.getElementById('btnLess').addEventListener('click', function () {
     if (gameRun){
-        if (minValue === maxValue){
-            const phraseRandom = Math.round( Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
-                `Вы загадали неправильное число!\n\u{1F914}` :
-                `Я сдаюсь..\n\u{1F92F}`;
-
+        if (minValue === maxValue || answerNumber < minValue){
+            answerPhrase = ifWrongNumber();
             answerField.innerText = answerPhrase;
             gameRun = false;
-        } else {
+        } else if (Math.floor((minValue + answerNumber - 1) / 2) < minValue) {
+            answerPhrase = ifWrongNumber();
+            answerField.innerText = answerPhrase;
+            gameRun = false;
+        } 
+        else {
             maxValue = answerNumber  - 1;
             answerNumber  = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
-            answerField.innerText = `Вы загадали число ${answerNumber }?`;
+            answerPhrase = answerPhraseRndm();
+            answerField.innerText = `${answerPhrase} ${answerNumber }?`;
         }
     }
 })
 
 document.getElementById('btnEqual').addEventListener('click', function () {
     if (gameRun){
-        answerField.innerText = `Я всегда угадываю\n\u{1F60E}`
+        answerField.innerText = `${rightAnswerPhrase()}`
         gameRun = false;
     }
 })
 
+function rightAnswerPhrase() {
+    let phraseNumber = randomNamber(3);
+    let answerPhrase;
+    switch (phraseNumber) {
+        case 0:
+            answerPhrase = `УРА!!!\n\u{1F64C}`;
+            break;
+        case 1:
+            answerPhrase = `Я всегда угадываю\n\u{1F60E}`;
+            break;
+        case 2:
+            answerPhrase = `Победа!!! \n\u{1F4AA}`;
+            break;
+        case 3:
+            answerPhrase = `Это магия, детка \n\u{1F609}`;
+            break;
 
-function randomNamber(count) {
-    let rndm = Math.round( Math.random() * count);
+    }
+    return answerPhrase;    
+}
+
+function answerPhraseRndm() {
+    let phraseNumber = randomNamber(3);
+    let answerPhrase;
+    switch (phraseNumber) {
+        case 0:
+            answerPhrase = `Ты загадал число`;
+            break;
+        case 1:
+            answerPhrase = `Может быть это `;
+            break;
+        case 2:
+            answerPhrase = `Предположу, что ты загадал `;
+            break;
+        case 3:
+            answerPhrase = `Возможно правильный ответ `;
+            break;
+
+    }
+    return answerPhrase;
+}
+
+function ifWrongNumber() {
+    let phraseNumber = randomNamber(2);
+    let answerPhrase;
+    switch (phraseNumber) {
+        case 0:
+            answerPhrase = `Ты загадал неправильное число!\n\u{1F914}`;
+            break;
+        case 1:
+            answerPhrase = `Что-то пошло не так\n\u{1F92F}`;
+            break;
+        case 2:
+            answerPhrase = `Где-то ты меня обманул \n\u{1F914}`;
+            break;
+
+    }
+    return answerPhrase;
+
+}
+
+function randomNamber(countPrase) {
+    let rndm = Math.round( Math.random() * countPrase );
     return rndm;
 }
