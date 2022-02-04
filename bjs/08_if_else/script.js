@@ -18,7 +18,7 @@ let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
 let answerPhrase;
-let answerPhraseLimit = 25;
+let answerPhraseLimit = 30;
 
 const orderNumberField = document.getElementById('orderNumberField');
 const answerField = document.getElementById('answerField');
@@ -95,21 +95,36 @@ function numberToText(number) {
     let numberTextUnity = ``;
     let numberTextDozens = ``;
     let numberTextHundreds = ``; 
+    let chekNumber = 0;
+    if (number < 0) {
+        number = -number;
+        chekNumber = -1;
+    }
     if (number >= 100) {
         numberTextHundreds = numberToTextHundreds(Math.floor(number/100));
         numberTextDozens = numberToTextDozens(number%100);
     } else if (number >= 10) {
         numberTextDozens = numberToTextDozens(number%100);
-    } else if (number >= 0) {
+    } else if (number > 0) {
         numberTextUnity = numberToTextUnity(number);
+    } else if (number == 0) {
+        numberTextUnity = `ноль`
     } else {
         numberTextUnity = `ё1`;
         numberTextDozens = `ё1`;
         numberTextHundreds = `ё1`;
     }
 
-    numberText = `${numberTextHundreds}${numberTextDozens}${numberTextUnity}`
+    numberText = `${negativeCheck (chekNumber)}${numberTextHundreds}${numberTextDozens}${numberTextUnity}`
     return numberText;
+}
+
+function negativeCheck (checkedNumber) {
+    if (checkedNumber < 0) {
+        return `минус `;
+    } else {
+        return ``;
+    }
 }
 
 function numberToTextUnity(numberUnity) {
