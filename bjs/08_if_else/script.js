@@ -18,13 +18,14 @@ let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
 let answerPhrase;
+let answerPhraseLimit = 25;
 
 const orderNumberField = document.getElementById('orderNumberField');
 const answerField = document.getElementById('answerField');
 
 orderNumberField.innerText = orderNumber;
 answerPhrase = answerPhraseRndm();
-if (`${answerPhrase} ${numberToText(answerNumber)}`.length < 20) {
+if (`${answerPhrase} ${numberToText(answerNumber)}`.length < answerPhraseLimit) {
     answerField.innerText = `${answerPhrase} ${numberToText(answerNumber)}?`;
 } else {
     answerField.innerText = `${answerPhrase} ${answerNumber}?`;
@@ -47,7 +48,7 @@ document.getElementById('btnOver').addEventListener('click', function () {
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerPhrase = answerPhraseRndm();
-            if (`${answerPhrase} ${numberToText(answerNumber)}`.length < 20) {
+            if (`${answerPhrase} ${numberToText(answerNumber)}`.length < answerPhraseLimit) {
                 answerField.innerText = `${answerPhrase} ${numberToText(answerNumber)}?`;
             } else {
                 answerField.innerText = `${answerPhrase} ${answerNumber}?`;
@@ -73,7 +74,7 @@ document.getElementById('btnLess').addEventListener('click', function () {
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerPhrase = answerPhraseRndm();
-            if (`${answerPhrase} ${numberToText(answerNumber)}`.length < 20) {
+            if (`${answerPhrase} ${numberToText(answerNumber)}`.length < answerPhraseLimit) {
                 answerField.innerText = `${answerPhrase} ${numberToText(answerNumber)}?`;
             } else {
                 answerField.innerText = `${answerPhrase} ${answerNumber}?`;
