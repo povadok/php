@@ -9,9 +9,20 @@
     <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body>
+
 <div class="container">
-    <div class="row game-card align-items-center">
-        <div class="col col-md-4 offset-md-4">
+    <div class="choice">
+            <div id="cont-minBtn">
+                <input class="form-control input-window" id="inputWindowMin" value="Введи минимум">
+                <button class="btn btn-info" id="btnMin">Ввод</button>
+            </div>
+            <div id="cont-maxBtn">
+                <input class="form-control input-window" id="inputWindowMax" value="Введи максимум">
+                <button class="btn btn-info" id="btnMax">Ввод</button>
+            </div>
+    </div>
+    <div class="row game-card align-items-center" id="game">
+        <div class="col col-md-4 offset-md-4">                
             <div class="card text-center">
                 <div class="card-header">
                     <p class="m-0">Попытка №<span id="orderNumberField">5</span></p>
@@ -25,9 +36,9 @@
                 </div>
                 <div class="card-body">
                     <div class="btn-group">
-                        <button class="btn btn-info" id="btnLess">&#129047;<br>меньше</button>
+                        <button class="btn btn-info" id="btnLess">меньше</button>
                         <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>
-                        <button class="btn btn-info" id="btnOver">больше<br>&#129045;</button>
+                        <button class="btn btn-info" id="btnOver">больше</button>
                     </div>
                 </div>
                 <div class="card-footer">

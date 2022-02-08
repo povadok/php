@@ -1,0 +1,15 @@
+body {
+    background-image: url('bjs/images/main.jpg');
+    background-size: cover;
+}
+
+.container {
+    margin-top: 45vh;
+}
+
+.btn {
+    background-color: #AFEEEE;
+    margin-bottom: 10px;
+    max-width: 20vw;
+    font-weight: 700;
+}

@@ -1,5 +1,37 @@
-let minValue = parseInt(prompt('Минимальное знание числа для игры от -999','0'));
-let maxValue = parseInt(prompt('Максимальное знание числа для игры до 999','100'));
+let minValue; /*= parseInt(prompt('Минимальное знание числа для игры от -999','0'));*/
+let maxValue; /*= parseInt(prompt('Максимальное знание числа для игры до 999','100'));*/
+const inputWindowMin = document.getElementById('inputWindowMin');
+const inputWindowMax = document.getElementById('inputWindowMax');
+
+document.getElementById('btnMin').addEventListener('click', function () {
+    minValue = +inputWindowMin.value;
+    let contMin = document.getElementById('cont-minBtn');
+    let contMinStyle = contMin.style;
+    contMinStyle.display = "none";
+    // contMinStyle.zIndex = '-10';
+    // contMinStyle.opacity = '0';
+    let contMax = document.getElementById('cont-maxBtn');
+    let contMaxStyle = contMax.style;    
+    contMaxStyle.display = "block";
+})
+
+document.getElementById('btnMax').addEventListener('click', function () {
+    maxValue = +inputWindowMax.value;
+    let contMax = document.getElementById('cont-maxBtn');
+    let contMaxStyle = contMax.style;    
+    contMaxStyle.display = "none";
+    // contMaxStyle.zIndex = '-10';
+    // contMaxStyle.opacity = '0';
+    let contGame = document.getElementById('game');
+    let contGameStyle = contGame.style;
+    contGameStyle.zIndex = '10';
+    contGameStyle.opacity = '.8';
+    
+    code(minValue, maxValue);
+    // let answerNumber  = Math.floor((minValue + maxValue) / 2);
+})
+
+function code(minValue, maxValue) {
 if (isNaN(minValue) || isNaN(maxValue)) {
     minValue = 0;
     maxValue = 100;
@@ -13,7 +45,8 @@ if (maxValue > 999) {
     maxValue = 999;
 }
 
-alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+// alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
@@ -89,7 +122,7 @@ document.getElementById('btnEqual').addEventListener('click', function () {
         gameRun = false;
     }
 })
-
+}
 function numberToText(number) {
     let numberText;
     let numberTextUnity = ``;

@@ -2,3 +2,47 @@
     height: 100vh;
     font-family: 'Open Sans', monospace;
 }
+
+.container {
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    background-image: url(../images/paper.jpg);
+    
+}
+
+.choice {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-body {
+    position: relative;
+}
+
+.btn-group {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+#btnLess, #btnEqual, #btnOver {
+    width: 25%;
+    
+}
+
+#cont-maxBtn {
+    display: none;
+}
+
+#game {
+    position: relative;
+    /* display: none; */
+    z-index: -10;
+    opacity: 0;
+}
+
