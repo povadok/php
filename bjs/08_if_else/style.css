@@ -39,6 +39,10 @@
     display: none;
 }
 
+#cont-range {
+    display: none;
+}
+
 #game {
     position: relative;
     /* display: none; */

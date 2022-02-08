@@ -3,8 +3,8 @@ let maxValue; /*= parseInt(prompt('Максимальное знание чис�
 const inputWindowMin = document.getElementById('inputWindowMin');
 const inputWindowMax = document.getElementById('inputWindowMax');
 
-document.getElementById('btnMin').addEventListener('click', function () {
-    minValue = +inputWindowMin.value;
+    document.getElementById('btnMin').addEventListener('click', function () {   
+    let min = +inputWindowMin.value;
     let contMin = document.getElementById('cont-minBtn');
     let contMinStyle = contMin.style;
     contMinStyle.display = "none";
@@ -13,13 +13,54 @@ document.getElementById('btnMin').addEventListener('click', function () {
     let contMax = document.getElementById('cont-maxBtn');
     let contMaxStyle = contMax.style;    
     contMaxStyle.display = "block";
+    minValue = min;
 })
 
-document.getElementById('btnMax').addEventListener('click', function () {
-    maxValue = +inputWindowMax.value;
+    document.getElementById('btnMax').addEventListener('click', function () {   
+    let max = +inputWindowMax.value;
     let contMax = document.getElementById('cont-maxBtn');
     let contMaxStyle = contMax.style;    
-    contMaxStyle.display = "none";
+    contMaxStyle.display = "none";    
+    let contRange = document.getElementById('cont-range');
+    let contRangeStyle = contRange.style;    
+    contRangeStyle.display = "block";
+    maxValue = max;
+    if (isNaN(minValue) || isNaN(maxValue)) {
+        minValue = 0;
+        maxValue = 100;
+    }
+    
+    if (minValue < -999) {
+        minValue = -999;
+    }
+    
+    if (maxValue > 999) {
+        maxValue = 999;
+    }
+    let contRangePhrase = document.getElementById('btnRange');
+    contRangePhrase.innerText = `Загадай число от ${minValue} до ${maxValue}`;
+})
+
+// if (isNaN(minValue) || isNaN(maxValue)) {
+//     minValue = 0;
+//     maxValue = 100;
+// }
+
+// if (minValue < -999) {
+//     minValue = -999;
+// }
+
+// if (maxValue > 999) {
+//     maxValue = 999;
+// }
+
+// let contRangePhrase = document.getElementById('btnRange');
+//     contRangePhrase.innerText = `Загадай число от ${minValue} до ${maxValue}`;
+
+document.getElementById('btnRange').addEventListener('click', function () {
+    let contRange = document.getElementById('cont-range');
+    let contRangeStyle = contRange.style;    
+    contRangeStyle.display = "none";
     // contMaxStyle.zIndex = '-10';
     // contMaxStyle.opacity = '0';
     let contGame = document.getElementById('game');
@@ -32,19 +73,6 @@ document.getElementById('btnMax').addEventListener('click', function () {
 })
 
 function code(minValue, maxValue) {
-if (isNaN(minValue) || isNaN(maxValue)) {
-    minValue = 0;
-    maxValue = 100;
-}
-
-if (minValue < -999) {
-    minValue = -999;
-}
-
-if (maxValue > 999) {
-    maxValue = 999;
-}
-
 // alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
 
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
