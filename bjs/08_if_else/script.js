@@ -171,9 +171,9 @@ function numberToText(number) {
     } else if (number == 0) {
         numberTextUnity = `ноль`
     } else {
-        numberTextUnity = `ё1`;
-        numberTextDozens = `ё1`;
-        numberTextHundreds = `ё1`;
+        numberTextUnity = `Что-то не то с числом(((`;
+        numberTextDozens = `Что-то не то с числом(((`;
+        numberTextHundreds = `Что-то не то с числом(((`;
     }
 
     numberText = `${negativeCheck (chekNumber)}${numberTextHundreds}${numberTextDozens}${numberTextUnity}`
@@ -257,7 +257,7 @@ function numberToTextDozens(numberDozens) {
             break;
         }
 
-    } else {
+    } else if ((numberDozens >= 10) && (numberDozens <= 19)) {
         switch (numberDozens) {
             case 11:
                 return ` одиннадцать`
@@ -290,6 +290,8 @@ function numberToTextDozens(numberDozens) {
                 return ` десять`
             break;
         }
+    } else if (numberDozens == 0) {
+        return ``;
     }
 }
 
