@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body>
-<div class="container">
+<div class="container align-items-center">
     <div class="row game-card align-items-center">
         <div class="col col-md-6 offset-md-3">
             <div class="card text-center">
@@ -19,15 +19,22 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h3 class="card-title"><span id="surnameOutput">Генерация фамилии</span></h3>
-                            <h4>Имя: <span id="firstNameOutput">Иван</span></h4>
+                            <h3 class="card-title">Фамилия: <span id="surnameOutput">Иванов</span></h3>
+                            <h4>Имя: <span id="firstNameOutput">Иван</span><br> Отчество: <span id="patronymicNameOutput">Иванович</span></h4>
                             <p>
-                                <span id="genderOutput">Генерация пола</span>
-                                <span>, </span>
-                                <span id="birthYearOutput">Генерация года рождения</span>
+                                Пол: <span id="genderOutput">м/ж</span>
+                                <span>, </span><br>
+                                Дата рождения: <span id="birthOutput">1900</span> 
+                            </p>
+                            <p>
+                                <h5>Професссия: <span id="professionOutput">Амёба</span></h5>
                             </p>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" id="btnRetry">Генерировать</button>
+                    <button class="btn btn-primary" id="btnClear">Отчистить</button>
                 </div>
             </div>
         </div>
